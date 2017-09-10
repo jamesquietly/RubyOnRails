@@ -6,9 +6,17 @@ SECRET_NUMBER = rand(101)
 def check_guess(guess)
     message = ""
     if guess > SECRET_NUMBER
-        message = "Too high!"
+        if guess > SECRET_NUMBER + 5
+            message = "Way too high!"
+        else
+            message = "Too high!"
+        end
     elsif guess < SECRET_NUMBER
-        message = "Too low!"
+        if guess < SECRET_NUMBER - 5
+            message = "Way too low!"
+        else
+            message = "Too low!"
+        end
     else
         message = "You got it right!\nThe SECRET NUMBER is #{SECRET_NUMBER}"
     end

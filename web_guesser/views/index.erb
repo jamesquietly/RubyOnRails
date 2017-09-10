@@ -1,12 +1,28 @@
 <html>
-  <head></head>
+  <head>
+  	<style>
+  	  <% if message == "Too high!" || message == "Too low!" %>
+	  		body {
+	  			background: rgb(255, 100, 100);
+	  		}
+	    <% elsif message.include?("Way") %>
+	      body {
+	      	background: red;
+	      }
+	    <% else %>
+	      body {
+	      	background: green;
+	      }
+  		<% end %>
+  	</style>
+  </head>
   <body>
     <form>
       <input type="text" name="guess" />
       <input type="submit" value="Guess!">
     </form>
-  	<p>
-  	  <%= message %>
-  	</p>
+
+  	<%= message %>
+
   </body>
 </html>
