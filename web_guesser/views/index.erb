@@ -1,7 +1,7 @@
 <html>
   <head>
   	<style>
-  	  <% if message == "Too high!" || message == "Too low!" %>
+  	  <% if message.include?("Too high!") || message.include?("Too low!") %>
 	  		body {
 	  			background: rgb(255, 100, 100);
 	  		}
