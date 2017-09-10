@@ -19,23 +19,23 @@ def check_guess(guess)
         end
     else
         message = "You got it right!\nThe SECRET NUMBER is #{$secret}, GENERATING NEW NUMBER!"
+        $secret = rand(101)
         $remaining_guesses = 6
     end
     $remaining_guesses -= 1
     if $remaining_guesses == 0
         message += " YOU LOST! GENERATING NEW NUMBER!"
+        $secret = rand(101)
         $remaining_guesses = 5
     end
     message += " || Remaining Guesses: #{$remaining_guesses}"
     message
 end
 
-def update_guess(number)
-    if number == 1
-        result = 5
-        secret = rand(101)
-    else
-        result = number - 1
+def check_cheat(string)
+    result = ""
+    if string == "true"
+        result = "The SECRET NUMBER is #{$secret}"
     end
     result
 end
@@ -43,5 +43,7 @@ end
 get '/' do
     guess = params["guess"].to_i
     message = check_guess(guess)
-    erb :index, :locals => {:message => message}
+    other_message = check_cheat(params["cheat"])
+    erb :index, :locals => {:message => message,
+                            :other_message => other_message}
 end
